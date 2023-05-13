@@ -48,8 +48,9 @@ public class MyFirstController {
     }
 
     @PostMapping("/try-login")
-    public String logInWithPost() {
+    public String logInWithPost(String userLogin , String userPassword) {
         log.info("login with post");
+        log.info("recived login: [{}] and password: [{}]", userLogin, userPassword);
         return "OK";
     }
 }
