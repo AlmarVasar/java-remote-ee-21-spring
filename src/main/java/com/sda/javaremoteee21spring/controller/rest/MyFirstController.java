@@ -27,7 +27,8 @@ public class MyFirstController {
 
     @GetMapping("/name")
     public String showMeMyName() {
-         return "Almar";
+
+        return "Almar";
     }
     @GetMapping("/me")
     public Person justMe()  {
@@ -65,4 +66,11 @@ public class MyFirstController {
         }
         return ResponseEntity.ok("Success");
     }
+    @GetMapping("/secret")
+    public String getOneSecret() {
+       String secretToShare = service.shareOneSecret();
+       log.info("Sharing[{}] secret with user", secretToShare);
+       return secretToShare;
+    }
 }
+
