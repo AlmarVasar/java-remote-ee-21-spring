@@ -1,6 +1,12 @@
 package com.sda.javaremoteee21spring.entity;
 
 public enum Fuel {
-    GASOLINE
+    GASOLINE,
+
+    PETROL,
+
+    DIESEL,
+
+    ELECTRIC
     //TODO : fill with values
 }
