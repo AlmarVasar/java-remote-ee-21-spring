@@ -23,5 +23,6 @@ public class CarController {
     public List<Car> getAllCars() {
         log.info("getting all car");
         return carService.findAllCars();
+
     }
 }
