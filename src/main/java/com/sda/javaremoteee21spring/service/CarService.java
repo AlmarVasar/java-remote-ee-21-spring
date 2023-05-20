@@ -26,4 +26,11 @@ public class CarService {
       return carsFromRepository;
 
     }
+
+    public Car findCarById(Long id) {
+        log.info("trying to find car with id: [{}]", id);
+        Car carFromRepository = carRepository.findById(id);
+        log.info("car from repository: [{}]", carFromRepository);
+        return null;
+    }
 }
