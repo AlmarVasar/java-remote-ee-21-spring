@@ -21,9 +21,10 @@ public class CarRepository {
     public CarRepository() {
         for (Car car : createSomeCars()) {
             cars.put(car.getId(), car);
+        }
+
     }
 
-}
     private List<Car> createSomeCars() {
         return List.of(
                 Car.builder()
@@ -58,14 +59,33 @@ public class CarRepository {
     }
 
     public Car findById(Long id) {
-        log.info("finding car by id: [{}}",id);
+        log.info("finding car by id: [{}}", id);
         return cars.get(id);
     }
 
     public Car save(Car carToSave) {
         log.info("Saving car:[{}]", carToSave);
         //TODO - fix this
-        carToSave.setId(3L);
+        Long id = nextId();
+        carToSave.setId(id);
+        cars.put(id, carToSave);
         return carToSave;
+    }
+
+    private Long nextId() {
+        // old way
+//        Long max = 0L;
+//        for (Long id: cars.keySet()) {
+//            if (id > max) {
+//                max = id;
+//            }
+//        }
+//        return max + 1;
+
+        // new way
+        return cars.keySet()
+                .stream()
+                .max(Long::compareTo)
+                .orElse(0L) + 1;
     }
 }
