@@ -31,6 +31,6 @@ public class CarService {
         log.info("trying to find car with id: [{}]", id);
         Car carFromRepository = carRepository.findById(id);
         log.info("car from repository: [{}]", carFromRepository);
-        return null;
+        return carFromRepository;
     }
 }
