@@ -11,11 +11,11 @@
 -Controller
 Model (data + operations on data) = Service + Repository
 
-- Controller
-- Service
-- Repository
+- Controller -> Get the request from user and return the view
+- Service -> Business logic ( what application should do)
+- Repository -> Access to DB
 
-### View - its a view which user is able to play with
+### View - it's a view which user is able to play with
 - html pages
 - json payload
 
