@@ -37,3 +37,4 @@ Model (data + operations on data) = Service + Repository
  - Car entity : good practices
    -get all cars(url + Http verb): GET /cars
  - -get one cars(url + Http verb): GET /cars/{id} e.g /cars/1024
+ - 
