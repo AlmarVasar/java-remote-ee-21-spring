@@ -52,4 +52,9 @@ public class CarService {
             throw new CarNotFoundException("No car with id: " + id);
         }
     }
+
+    public Car replaceCarById(Car carToReplace, Long carId) {
+        log.info("Replacing car by id : [{}]", carId, carToReplace);
+        return carRepository.replaceById(carId, carToReplace);
+    }
 }

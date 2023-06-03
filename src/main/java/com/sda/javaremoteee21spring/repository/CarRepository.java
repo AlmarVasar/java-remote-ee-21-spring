@@ -101,4 +101,11 @@ public class CarRepository {
         return exist;
 
     }
+
+    public Car replaceById(Long carId, Car carToReplace) {
+        log.info("Replacing car with id: [{}] with content : [{}]", carId, carToReplace);
+        cars.put(carId, carToReplace);
+
+        return carToReplace;
+    }
 }
