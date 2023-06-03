@@ -43,7 +43,7 @@ public class CarRepository {
                         .brand("Mazda")
                         .model("3")
                         .vin("133232")
-                        .colour(Colour.BLUE)
+                        .colour(Colour.BlUE)
                         .productionYearMonth(YearMonth.now())
                         .mileage(300)
                         .fuelType(Fuel.DIESEL)
