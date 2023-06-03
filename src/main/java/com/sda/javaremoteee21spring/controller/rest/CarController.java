@@ -50,5 +50,17 @@ public class CarController {
         return ResponseEntity.noContent()
                 .build();
     }
-}
 
+    @PutMapping("/cars/{id}")
+    public Car repleaceCar(@RequestBody Car carToReplace, @PathVariable("id") Long carId){
+        log.info("Replacing car with id: [{}] with content:[{}]",carId, carToReplace);
+        carService.replaceCarById(carToReplace, carId);
+        return carToReplace;
+    }
+    @PatchMapping("/cars/{id}")
+    public Car updateCar(@PathVariable("id") Long id, @RequestBody Car carToUpdate) {
+        log.info("Updating car with id: [{}]", id, carToUpdate);
+
+        return carService.updateCar(id, carToUpdate);
+    }
+}
