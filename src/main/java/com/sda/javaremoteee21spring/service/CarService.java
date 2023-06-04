@@ -8,6 +8,7 @@ import com.sda.javaremoteee21spring.repository.CarRepository;
 import com.sda.javaremoteee21spring.repository.SpringCarRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.YearMonth;
 import java.util.List;
@@ -61,15 +62,16 @@ public class CarService {
 
     public Car saveCar(Car carToSave) {
         log.info("Saving object: [{}]", carToSave);
-        Car savedCar = carRepository.save(carToSave);
+        Car savedCar = springCarRepository.save(carToSave);
         log.info("Car with assigned id: [{}]", savedCar);
         return savedCar;
     }
 
+    @Transactional
     public void deleteCarById(Long id) {
         log.info("Deleting item with id: [{}]", id);
-        if (carRepository.existById(id)) {
-            carRepository.deleteById(id);
+        if (springCarRepository.existsById(id)) {
+            springCarRepository.deleteById(id);
         } else {
             throw new CarNotFoundException("No car with id: " + id);
         }
