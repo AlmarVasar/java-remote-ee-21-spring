@@ -50,11 +50,14 @@ public class CarService {
 //        Optional<Car> maybeCar = Optional.ofNullable(carFromRepository);
 //        return maybeCar.orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
     public Car findCarById(Long id) {
-  log.info("trying to find car with id: [{}]", id);
-  return springCarRepository.findById(id)
-          .orElseThrow(() -> new CarNotFoundException("No car with id:" + id));
-
+        log.info("trying to find car with id: [{}]", id);
+        Optional<Car> carFromRepos = springCarRepository.findById(id);
+        carFromRepos.ifPresentOrElse(car -> log.info("Car from repository: [{}]", car),
+                () -> log.info("No car with given id: [{}]", id));
+        return carFromRepos
+                .orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
     }
+
 
     public Car saveCar(Car carToSave) {
         log.info("Saving object: [{}]", carToSave);
