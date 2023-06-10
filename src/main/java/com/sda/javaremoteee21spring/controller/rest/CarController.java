@@ -9,6 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -21,19 +22,18 @@ public class CarController {
         this.carService = carService;
     }
 
-
     @GetMapping("/cars")
     public List<Car> getAllCars() {
         log.info("getting all car");
         return carService.findAllCars();
     }
 
-
-
-        @GetMapping("/cars/{id}")
-        public Car getCarById(@PathVariable Long id) {
-        log.info("Getting car by id :[{}],",id);
-            return carService.findCarById(id);
+    // /cars/1
+    // /cars/3
+    @GetMapping("/cars/{id}")
+    public Car getCarById(@PathVariable Long id) {
+        log.info("Getting car by id: [{}]", id);
+        return carService.findCarById(id);
     }
 
     @PostMapping("/cars")
@@ -41,30 +41,30 @@ public class CarController {
         log.info("create new car: [{}]", carToSave);
         Car saved = carService.saveCar(carToSave);
         URI path = ucb.path("/api/cars/{id}")
-                .buildAndExpand(saved.getId())
+                .buildAndExpand(Map.of("id", saved.getId()))
                 .toUri();
         return ResponseEntity.created(path)
                 .body(saved);
     }
 
-
     @DeleteMapping("/cars/{id}")
     public ResponseEntity<Void> deleteCarById(@PathVariable Long id) {
-        log.info("Deleting car by id : [{}]", id);
+        log.info("Deleting car by id: [{}]", id);
         carService.deleteCarById(id);
         return ResponseEntity.noContent()
                 .build();
     }
 
     @PutMapping("/cars/{id}")
-    public Car repleaceCar(@RequestBody Car carToReplace, @PathVariable("id") Long carId){
-        log.info("Replacing car with id: [{}] with content:[{}]",carId, carToReplace);
+    public Car replaceCar(@RequestBody Car carToReplace, @PathVariable("id") Long carId) {
+        log.info("Replacing car with id: [{}] with content: [{}]", carId, carToReplace);
         carService.replaceCarById(carToReplace, carId);
         return carToReplace;
     }
+
     @PatchMapping("/cars/{id}")
     public Car updateCar(@PathVariable("id") Long id, @RequestBody Car carToUpdate) {
-        log.info("Updating car with id: [{}]", id, carToUpdate);
+        log.info("Updating car with id: [{}] with content: [{}]", id, carToUpdate);
 
         return carService.updateCar(id, carToUpdate);
     }

@@ -16,4 +16,11 @@ public enum Colour {
     Colour(String description) {
         this.description = description;
     }
+
+    public static void main(String[] args) {
+        Colour soulRed = SOUL_RED;
+        System.out.println(soulRed.getDescription());
+        System.out.println("name is: " + soulRed.name());
+        System.out.println("Ordinal is: " + soulRed.ordinal());
+    }
 }
