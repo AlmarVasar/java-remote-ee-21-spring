@@ -11,7 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.LocalDateTime;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.sda.javaremoteee21spring.controller.rest")
 public class CarRestAdvisor {
 
     @ExceptionHandler(CarNotFoundException.class)
